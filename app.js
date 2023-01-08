@@ -10,6 +10,26 @@ var orderRouter = require('./routes/order');
 var checkRouter = require('./routes/check');
 var app = express();
 
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('./db/order.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+      console.error(err.message);
+  } else {
+      console.log('Connected to the orders database.');
+  }
+});
+
+const createQuery = `
+    CREATE TABLE IF NOT EXISTS orders(
+        timestamp VARCHAR(100) PRIMARY KEY,
+        username VARCHAR(100),
+        coffeetype VARCHAR(100),
+        coffeedense VARCHAR(100)
+    )
+`;
+
+db.each(createQuery);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
