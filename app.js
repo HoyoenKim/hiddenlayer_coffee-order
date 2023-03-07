@@ -1,15 +1,22 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
+const express      = require('express');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const logger       = require('morgan');
+const cors         = require('cors');
+const createError  = require('http-errors');
+const bodyParser   = require('body-parser');
+const path         = require('path');
 
+// using
+const storeRouter = require('./routes/store');
+const brandRouter = require('./routes/brand');
+const orderRouter = require('./routes/order');
+const menuRouter  = require('./routes/menu');
+
+// not using
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const orderRouter = require('./routes/order');
 const checkRouter = require('./routes/check');
+
 const app = express();
 
 // view engine setup
@@ -21,11 +28,17 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static',express.static(path.join(__dirname, 'public')));
 
+// using
+app.use('/store', storeRouter);
+app.use('/brand', brandRouter);
+app.use('/menu', menuRouter);
+app.use('/order', orderRouter);
+
+// not using
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/order', orderRouter);
 app.use('/check', checkRouter);
 
 // catch 404 and forward to error handler
