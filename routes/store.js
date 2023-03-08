@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/allStores', function(req, res, next) {
   // @Description: Select all stores' information.
-	// @Related: StorePage.vue
+	// @Related: StorePage.vue, MainLayout.vue
 	
 	let selectSql = 'select * from stores';
 	

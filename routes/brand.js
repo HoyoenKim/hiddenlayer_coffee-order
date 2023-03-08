@@ -208,44 +208,47 @@ router.get('/readBrand/:brand_id', function(req, res, next) {
   });
 });
 
-router.get('/readStory/:brand_id', function(req, res, next) {
+router.get('/readAllStory/:brand_id', function(req, res, next) {
   // TODO readBrand 와 합쳐야함.
   // @Description: Select specific brand's information and all story's information in that brand. 
 	// @Related: BrandPage.vue
 
   var brand_id = req.params.brand_id;
 
-  let selectSql = 'select * from brands where brand_id = ?';
+  let selectSql = 'select * from stories where brand_id = ?';
   let selectParams = [brand_id];
   
   connection.query(selectSql, selectParams, function(err, result, fields) {
     if(err) {
       console.log(err);
-      res.status(406).send('There is no Brand!');
+      res.status(406).send('There is no Story!');
     }
     else {
-      var story_ids = JSON.parse(result[0].story_ids)
-
-      let selectSql2 = 'select * from stories where ';
-      let selectParams2 = [];
-      for(const story_id of story_ids) {
-        selectSql2 += 'story_id = ? or ';
-        selectParams2.push(story_id);
-      }
-      selectSql2 = selectSql2.substring(0, selectSql2.length - 4);
-
-      connection.query(selectSql2, selectParams2, function(err, result, fields) {
-        if(err) {
-          console.log(err);
-          res.status(406).send('There is no Story!');
-        }
-        else {
-          res.status(200).send({stories: result});
-        }
-      })
+      res.status(200).send({stories: result});
     }
   }) 
 })
+
+router.get('/readStory/:story_id', function(req, res, next) {
+  // TODO readBrand 와 합쳐야함.
+  // @Description: Select specific brand's information and all story's information in that brand. 
+	// @Related: BrandPage.vue
+
+  var story_id = req.params.story_id;
+
+  let selectSql = 'select * from stories where story_id = ?';
+  let selectParams = [story_id];
+
+  connection.query(selectSql, selectParams, function(err, result, fields) {
+    if(err) {
+      console.log(err);
+      res.status(406).send('There is no Story!');
+    }
+    else {
+      res.status(200).send({story: result});
+    }
+  })
+});
 
 router.put('/updateBrand', function(req, res, next) {
   // TODO admin 페이지 구현 필요.
@@ -271,6 +274,7 @@ router.delete('/deleteBrand', function(req, res, next) {
 	// @Related: admin
 	// @Now: 테스트 데이터 삭제
 	// @Issue: DB delete 및 이미지까지 같이 지워야 함.
+  
   var store_id = 0;
 
   let deleteSql = 'delete from brands where store_id = ?';
@@ -279,7 +283,7 @@ router.delete('/deleteBrand', function(req, res, next) {
   connection.query(deleteSql, deleteParam, function(err, result, fields) {
 		if(err) {
 			console.log(err);
-			res.status(406).send('There is no Store!');
+			res.status(406).send('There is no Brand!');
 		}
     else {
       res.status(200).send('Success!');
@@ -302,7 +306,7 @@ router.delete('/deleteStory', function(req, res, next) {
   connection.query(deleteSql, deleteParam, function(err, result, fields) {
 		if(err) {
 			console.log(err);
-			res.status(406).send('There is no Store!');
+			res.status(406).send('There is no Story!');
 		}
     else {
       res.status(200).send('Success!');

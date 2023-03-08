@@ -38,43 +38,36 @@ CREATE TABLE IF NOT EXISTS stories (
     primary key (story_id)
 );
 
-CREATE TABLE IF NOT EXISTS MenuTables (
+CREATE TABLE IF NOT EXISTS menuTables (
     menu_table_id int NOT NULL,
-    menu_table_title varchar(),
-    menu_table_subtitle varchar(),
-    menu_ids varchar(),
+    menu_table_title varchar(30),
+    menu_table_subtitle varchar(30),
+    menu_ids varchar(100),
     store_id int,
     primary key (menu_table_id)
 );
 
-
-CREATE TABLE IF NOT EXISTS Menu (
+CREATE TABLE IF NOT EXISTS menus (
     menu_id int NOT NULL,
-    menu_name varchar(100),
-    menu_image json,
-    menu_options json,
+    menu_title varchar(30),
+    menu_price int,
+    menu_description varchar(300),
+    menu_options varchar(300),
     store_id int,
+    menu_table_ids varchar(30),
     primary key (menu_id)
-)
-
-CREATE TABLE IF NOT EXISTS MenuOptions (
-    menu_option_id int NOT NULL,
-    menu_options json,
-    menu_id int,
-    primary key (menu_option_id),
-)
+);
 
 CREATE TABLE IF NOT EXISTS orders (
     order_id int NOT NULL AUTO_INCREMENT,
     order_time varchar(100),
-    order_price varchar(100),
-    store_name varchar(100),
-    user_name varchar(100),
-    user_phone varchar(100),
-    user_password varchar(100),
-    user_location varchar(100),
-    menu_name varchar(10000),
-    menu_options varchar(10000),
+    order_price int,
+    user_name varchar(30),
+    user_phone varchar(30),
+    user_password varchar(30),
+    user_location varchar(30),
+    menu_ids varchar(100),
+    menu_options varchar(3000),
     is_payed int,
     primary key (order_id)
-)
+);

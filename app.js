@@ -15,7 +15,6 @@ const menuRouter  = require('./routes/menu');
 // not using
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const checkRouter = require('./routes/check');
 
 const app = express();
 
@@ -39,7 +38,6 @@ app.use('/order', orderRouter);
 // not using
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/check', checkRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
