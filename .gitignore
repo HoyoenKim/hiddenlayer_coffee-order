@@ -1,5 +1,6 @@
 # images
-/public/images
+# /public/images
+# *.jpg # just for test data
 
 # Logs
 logs
