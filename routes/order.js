@@ -133,12 +133,15 @@ router.get('/selectOrder/:name/:phone/:password', function(req, res, next) {
     }
     else {
       // TODO Need to check timestamp!
+      result.sort(function(a, b) {
+        return Date.parse(b.order_time) - Date.parse(a.order_time);
+      })
       res.status(200).send({orders: result});
     }
   })
 })
 
-router.delete('/deleteOrder:order_id', function(req, res, next) {
+router.delete('/deleteOrder/:order_id', function(req, res, next) {
   // @Description: Delete certain order
   // @Related: OrderCheck.vue
 
