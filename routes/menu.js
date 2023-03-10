@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   host : 'localhost',
   port : '3306',
   user : 'hoyeon',
-  password : '1234',
+  password : '12345678',
   database : 'order_db'
 })
 connection.connect();
