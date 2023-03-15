@@ -1,6 +1,8 @@
-create user 'localorder'@'localhost' IDENTIFIED BY '1234';
+create user 'hoyeon'@'localhost' IDENTIFIED BY '12345678';
+alter user 'hoyeon'@'localhost' identified with mysql_native_password by '12345678;
 CREATE DATABASE order_db default CHARACTER SET UTF8;
-GRANT ALL PRIVILEGES ON order_db.* TO localorder@localhost IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON order_db.* TO 'hoyeon'@'localhost' IDENTIFIED BY '12345678';
+GRANT ALL PRIVILEGES ON order_db.* to hoyeon@localhost;
 USE order_db;
 
 CREATE TABLE IF NOT EXISTS stores (
