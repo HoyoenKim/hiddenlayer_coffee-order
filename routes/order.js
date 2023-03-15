@@ -108,11 +108,10 @@ router.get('/selectAllOrders', function(req, res, next) {
     }
     else {
       console.log(result);
-      res.status(200).send({test: 'test'});
+      res.status(200).send({orders: result});
     }
   });
 
-  res.status(200).send({test: 'test'});
 })
 
 router.get('/selectOrder/:name/:phone/:password', function(req, res, next) {
