@@ -11,6 +11,7 @@ const storeRouter = require('./routes/store');
 const brandRouter = require('./routes/brand');
 const orderRouter = require('./routes/order');
 const menuRouter  = require('./routes/menu');
+const eventRouter = require('./routes/event');
 
 // not using
 const indexRouter = require('./routes/index');
@@ -33,6 +34,7 @@ app.use('/static',express.static(path.join(__dirname, 'public')));
 app.use('/store', storeRouter);
 app.use('/brand', brandRouter);
 app.use('/menu', menuRouter);
+app.use('/event', eventRouter);
 app.use('/order', orderRouter);
 
 // not using

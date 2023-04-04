@@ -10,12 +10,14 @@ CREATE TABLE IF NOT EXISTS stores (
     store_title varchar(30),
     store_subtitle varchar(10),
     store_description varchar(100),
+    store_images_nums int,
     store_order_type varchar(30),
     store_location varchar(30),
     store_open_time varchar(100),
     store_official_information varchar(100),
-    brand_ids varchar(100),
-    menu_ids varchar(100),
+    story_ids varchar(300),
+    menu_table_ids varchar(100),
+    event_ids varchar(300),
     owner_ids varchar(10),
     primary key (store_id)
 );
@@ -38,7 +40,6 @@ CREATE TABLE IF NOT EXISTS stories (
     story_subtitle varchar(30),
     story_description varchar(1000),
     store_id int,
-    brand_id int,
     primary key (story_id)
 );
 
@@ -54,9 +55,11 @@ CREATE TABLE IF NOT EXISTS menuTables (
 CREATE TABLE IF NOT EXISTS menus (
     menu_id int NOT NULL,
     menu_title varchar(30),
+    menu_subtitle varchar(100),
     menu_price int,
     menu_description varchar(300),
-    menu_options varchar(300),
+    menu_price_options varchar(300),
+    menu_additional_options varchar(3000),
     store_id int,
     menu_table_ids varchar(30),
     primary key (menu_id)

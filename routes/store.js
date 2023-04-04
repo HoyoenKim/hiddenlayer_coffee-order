@@ -41,46 +41,37 @@ router.post('/createStore', function(req, res, next) {
 	// @Description: Create store information.
 	// @Related: admin
 	// @Now: 하드코딩
-
-	var storeInfo = {
-		store_id: 0,
-		store_title: '재야의 커피',
-		store_subtitle: 'Cafe',
-		store_description: '사용자 맞춤 원두 추천 카페',
-		store_order_type: [1, 1, 1], // '테이블 주문 가능', '포장 가능', '배달 가능'
-		store_location: ["35.23021", "126.839829"], // 위도, 경도
-		store_open_time: [[10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22]], // 월 - 일, 공휴일
-		store_official_information: ['류현석', '창업진흥센터 B동 401호', '010-2128-7164'], // 소유자, 장소, 담당자 연락처
-		branding_ids: [0, 1],
-		menu_ids: [0, 1, 2],
-		owner_ids: [0], // need to encription
-	}
+	var storeInfo = req.body;
 
 	let inSql = 'insert into stores('
 	+ 'store_id, '
 	+ 'store_title, '
 	+ 'store_subtitle, '
 	+ 'store_description, '
+	+ 'store_images_nums, '
 	+ 'store_order_type, '
 	+ 'store_location, '
 	+ 'store_open_time, '
 	+ 'store_official_information, '
-	+ 'brand_ids, '
-	+ 'menu_ids, '
+	+ 'story_ids, '
+	+ 'menu_table_ids, '
+	+ 'event_ids, '
 	+ 'owner_ids'
-	+ ') values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+	+ ') values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 	
 	let inParam = [
 		storeInfo.store_id,
 		storeInfo.store_title, 
 		storeInfo.store_subtitle, 
-		storeInfo.store_description, 
+		storeInfo.store_description,
+		storeInfo.store_images_nums,
 		JSON.stringify(storeInfo.store_order_type), 
 		JSON.stringify(storeInfo.store_location),
 		JSON.stringify(storeInfo.store_open_time),
 		JSON.stringify(storeInfo.store_official_information),
-		JSON.stringify(storeInfo.branding_ids),
-		JSON.stringify(storeInfo.menu_ids),
+		JSON.stringify(storeInfo.story_ids),
+		JSON.stringify(storeInfo.menu_table_ids),
+		JSON.stringify(storeInfo.event_ids),
 		JSON.stringify(storeInfo.owner_ids),
 	];
 	
@@ -120,20 +111,22 @@ router.delete('/deleteStore', function(req, res, next) {
 	// @Related: admin
 	// @Now: 테스트 데이터 삭제
 	// @Issue: DB delete 및 이미지까지 같이 지워야 함.
-	var store_title = '재야의 커피';
+	//var store_title = '재야의 커피';
+	//
+	//let deleteSql = 'delete from stores where store_title = ?';
+	//let deleteParam = [store_title];
+	//
+	//connection.query(deleteSql, deleteParam, function(err, result, fields) {
+	//	if(err) {
+	//		console.log(err);
+	//		res.status(406).send('There is no Store!');
+	//	}
+	//	else {
+	//		res.status(200).send('Success!');
+	//	}
+	//});
 
-	let deleteSql = 'delete from stores where store_title = ?';
-	let deleteParam = [store_title];
-
-	connection.query(deleteSql, deleteParam, function(err, result, fields) {
-		if(err) {
-			console.log(err);
-			res.status(406).send('There is no Store!');
-		}
-		else {
-			res.status(200).send('Success!');
-		}
-	});
+	res.status(200).send({test: 'test'});
 });
 
 router.post('/uploadImage', function(req, res, next) {
