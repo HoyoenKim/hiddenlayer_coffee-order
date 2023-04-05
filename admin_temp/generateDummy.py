@@ -33,7 +33,7 @@ def createStore(baseUrl):
 		                    "store_official_information": ['김호연', '학사기숙사 B동 S305', '010-2128-7164'], # 소유자, 장소, 담당자 연락처
 		                    "story_ids": [12, 13, 14, 15, 16, 17, 18, 19],
 		                    "menu_table_ids": [3, 4, 5, 6, 7, 8],
-		                    "event_ids": [8, 9, 10, 11, 12, 13, 14, 15],
+		                    "event_ids": [8, 9, 10, 11, 12],
 		                    "owner_ids": [1], # need to encription
                         })
     
@@ -869,6 +869,117 @@ def createMenu(baseUrl):
         response = requests.post(url, json=menuInfo)
         print(response)
 
+def createEvent(baseUrl):
+    url = baseUrl + 'event/createEvent'
+    eventInfoList = []
+    eventInfoList.append({
+        "event_id":  0,
+        "event_title": '재야의 커피 판매 시작',
+        "event_subtitle": '판매 시작',
+        "event_description": '재야의 커피 판매 시작합니다.',
+        "event_duedate": str(datetime(2023, 1, 1)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  1,
+        "event_title": '신메뉴 출시: 블랜디드 원두',
+        "event_subtitle": '블랜디드 원두 출시',
+        "event_description": '블랜디드 원두 판매 시작합니다.',
+        "event_duedate": str(datetime(2023, 1, 1)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  2,
+        "event_title": '신메뉴 출시: 싱글 오리진',
+        "event_subtitle": '싱글 오리진 출시',
+        "event_description": '싱글 오리진 판매 시작합니다.',
+        "event_duedate": str(datetime(2023, 2, 1)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  3,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtesttest',
+        "event_duedate": str(datetime(2023, 3, 1)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  4,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtesttest',
+        "event_duedate": str(datetime(2023, 3, 15)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  5,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtesttest',
+        "event_duedate": str(datetime(2023, 3, 30)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  6,
+        "event_title": '세상에서 가장 싼 커피',
+        "event_subtitle": '커피 할인 이벤트',
+        "event_description": '선착순 100분에게 할인 혜택을 제공합니다.',
+        "event_duedate": str(datetime(2023, 4, 30)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  7,
+        "event_title": '세상에서 가장 싼 와인',
+        "event_subtitle": '와인 할인 이벤트',
+        "event_description": '선착순 100분에게 할인 혜택을 제공합니다.',
+        "event_duedate": str(datetime(2023, 4, 30)),
+        "store_id": 0, # 재야의 커피
+    })
+    eventInfoList.append({
+        "event_id":  8,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtestest',
+        "event_duedate": str(datetime(2023, 1, 15)),
+        "store_id": 1, # S305
+    })
+    eventInfoList.append({
+        "event_id":  9,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtestest',
+        "event_duedate": str(datetime(2023, 2, 15)),
+        "store_id": 1, # S305
+    })
+    eventInfoList.append({
+        "event_id":  10,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtestest',
+        "event_duedate": str(datetime(2023, 3, 15)),
+        "store_id": 1, # S305
+    })
+    eventInfoList.append({
+        "event_id":  11,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtestest',
+        "event_duedate": str(datetime(2023, 4, 15)),
+        "store_id": 1, # S305
+    })
+    eventInfoList.append({
+        "event_id":  12,
+        "event_title": 'test',
+        "event_subtitle": 'testtest',
+        "event_description": 'testtestest',
+        "event_duedate": str(datetime(2023, 5, 15)),
+        "store_id": 1, # S305
+    })
+    for eventInfo in eventInfoList:
+        response = requests.post(url, json=eventInfo)
+        print(response)
+
 def rename():
     p = '../public/images/story'
     for pn in os.listdir(p):
@@ -889,6 +1000,7 @@ if __name__ == "__main__":
     #createStore(baseUrl)
     #createStory(baseUrl)
     #createMenuTable(baseUrl)
-    createMenu(baseUrl)
+    #createMenu(baseUrl)
+    createEvent(baseUrl)
     #rename()
     

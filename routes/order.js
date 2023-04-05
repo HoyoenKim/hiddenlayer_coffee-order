@@ -24,8 +24,8 @@ router.post('/createOrder', function(req, res, next) {
   // TODO 송금 여부 자동화
   // @Description: Create order
   // @Related: CartPage.vue, BrandLayout.vue
-  var order_time = new Date(Date.now()).toString();
 
+  var order_time = new Date(Date.now()).toString();
   var userInfo = {
     user_name: req.body.name,
     user_phone: req.body.phone,
@@ -34,68 +34,55 @@ router.post('/createOrder', function(req, res, next) {
   }
 
   var cart = req.body.cart;
-  var storeInfo = {}
-  for (const [menuId, menu] of Object.entries(cart)) {
-    var storeTitle = menu.store_title;
-    var menuOptions = menu.menu_option_select.menu_option_values;
-    menuOptions.push(menu.menu_option_select.number)
-    var menuPrice = menu.menu_option_select.menu_price;
-    var menuNumber = menu.menu_option_select.number;
-
-    if (!(storeTitle in storeInfo)) {
-      storeInfo[storeTitle] = {
-        menu_ids: [menuId],
-        menu_options: [menuOptions],
-        order_price: menuPrice * menuNumber
-      }
-    }
-    else {
-      storeInfo[storeTitle].menu_ids.push(menuId);
-      storeInfo[storeTitle].menu_options.push(menuOptions);
-      storeInfo[storeTitle].order_price += menuPrice * menuNumber;
-    }
+  var orderInfo = {
+    menu_ids: [],
+    menu_price_options: [],
+    menu_add_options: [],
+  }
+  
+  for (const[key, value] of Object.entries(cart)) {
+    orderInfo.menu_ids.push(value.menu_id);
+    orderInfo.menu_price_options.push(value.price_option_value);
+    orderInfo.menu_add_options.push(value.add_option_values);
   }
 
   var is_payed = 0;
   
-  for (const [store_title, orderInfo] of Object.entries(storeInfo)) {
-    let inSql = 'insert into orders('
-    + 'order_time, '
-    + 'order_price, '
-    + 'user_name, '
-    + 'user_phone, '
-    + 'user_password, '
-    + 'user_location, '
-    + 'menu_ids, '
-    + 'menu_options, '
-    + 'is_payed'
-    + ') values(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  let inSql = 'insert into orders('
+  + 'order_time, '
+  + 'user_name, '
+  + 'user_phone, '
+  + 'user_password, '
+  + 'user_location, '
+  + 'menu_ids, '
+  + 'menu_price_options, '
+  + 'menu_add_options, '
+  + 'is_payed'
+  + ') values(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  
+  let inParam = [
+    order_time,
+    userInfo.user_name,
+    userInfo.user_phone,
+    userInfo.user_password,
+    userInfo.user_location,
+    JSON.stringify(orderInfo.menu_ids),
+    JSON.stringify(orderInfo.menu_price_options),
+    JSON.stringify(orderInfo.menu_add_options),
+    is_payed
+  ];
 
-    let inParam = [
-      order_time,
-      orderInfo.order_price,
-      userInfo.user_name,
-      userInfo.user_phone,
-      userInfo.user_password,
-      userInfo.user_location,
-      JSON.stringify(orderInfo.menu_ids),
-      JSON.stringify(orderInfo.menu_options),
-      is_payed
-    ];
-
-    connection.query(inSql, inParam,
-      function(err, result, fields) {
-        if(err) {
-          console.log(err);
-          //res.status(406).send({test: 'test'});
-        }
+  connection.query(inSql, inParam, function(err, result, fields) {
+      if(err) {
+        console.log(err);
+        res.status(406).send({test: 'test'});
       }
-    );
-  }
-  next();
-}, function(req, res, next) {
-  res.status(200).send('Success!');
-})
+      else {
+        res.status(200).send('Success!');
+      }
+    }
+  );
+});
 
 router.get('/selectAllOrders', function(req, res, next) {
   // @Description: Select all orders

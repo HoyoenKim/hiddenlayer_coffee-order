@@ -19,23 +19,6 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/allStores', function(req, res, next) {
-  // @Description: Select all stores' information.
-	// @Related: StorePage.vue, MainLayout.vue
-	
-	let selectSql = 'select * from stores';
-	
-	connection.query(selectSql, function(err, result, fields) {
-		if(err) {
-			console.log(err);
-			res.status(406).send({stores: []});
-		}
-		else {
-			res.status(200).send({stores: result});
-		}
-	}) 
-});
-
 router.post('/createStore', function(req, res, next) {
 	// TODO storeInfo 를 request body 에서 받아와야 함.
 	// @Description: Create store information.
@@ -84,7 +67,23 @@ router.post('/createStore', function(req, res, next) {
 			res.status(200).send('Success!');
 		}
 	})
+});
 
+router.get('/allStores', function(req, res, next) {
+  // @Description: Select all stores' information.
+	// @Related: StorePage.vue, MainLayout.vue
+	
+	let selectSql = 'select * from stores';
+	
+	connection.query(selectSql, function(err, result, fields) {
+		if(err) {
+			console.log(err);
+			res.status(406).send({stores: []});
+		}
+		else {
+			res.status(200).send({stores: result});
+		}
+	}) 
 });
 
 router.get('/readStore/:store_id', function(req, res, next) {
