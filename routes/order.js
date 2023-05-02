@@ -36,12 +36,14 @@ router.post('/createOrder', function(req, res, next) {
   var cart = req.body.cart;
   var orderInfo = {
     menu_ids: [],
+    menu_numbers: [],
     menu_price_options: [],
     menu_add_options: [],
   }
   
   for (const[key, value] of Object.entries(cart)) {
     orderInfo.menu_ids.push(value.menu_id);
+    orderInfo.menu_numbers.push(value.number)
     orderInfo.menu_price_options.push(value.price_option_value);
     orderInfo.menu_add_options.push(value.add_option_values);
   }
@@ -55,10 +57,11 @@ router.post('/createOrder', function(req, res, next) {
   + 'user_password, '
   + 'user_location, '
   + 'menu_ids, '
+  + 'menu_numbers, '
   + 'menu_price_options, '
   + 'menu_add_options, '
   + 'is_payed'
-  + ') values(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  + ') values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
   
   let inParam = [
     order_time,
@@ -67,6 +70,7 @@ router.post('/createOrder', function(req, res, next) {
     userInfo.user_password,
     userInfo.user_location,
     JSON.stringify(orderInfo.menu_ids),
+    JSON.stringify(orderInfo.menu_numbers),
     JSON.stringify(orderInfo.menu_price_options),
     JSON.stringify(orderInfo.menu_add_options),
     is_payed

@@ -325,15 +325,15 @@ def createMenu(baseUrl):
     menuInfoList = []
     menuInfoList.append({
         "menu_id": 0,
-        "menu_title": '콜롬비아 엘파라이소 리치피치',
-        "menu_subtitle": '리치, 복숭아, 블루베리 (300ml)',
+        "menu_title": '엘파라이소 리치-피치',
+        "menu_subtitle": '콜롬비아, 리치, 복숭아, 블루베리 (300ml)',
         "menu_price": 3900,
-        "menu_description": "리치,복숭아,블루베리,메이플 시럽맛이 나는 연하고 부드러운 핸드드립 커피",
+        "menu_description": "콜롬비아산 원두, 리치, 복숭아, 블루베리, 메이플 시럽맛이 나는 연하고 부드러운 핸드드립 커피입니다.",
         "menu_price_options": {
                 "type": 0, # 0 toggle, 1 checkbox
                 "options": [
                     {
-                      "label": "콜롬비아 엘파라이소 리치피치",
+                      "label": "엘파라이소 리치-피치",
                       "value": 0,
                       "price": 3900,
                     }
@@ -368,15 +368,15 @@ def createMenu(baseUrl):
     })
     menuInfoList.append({
         "menu_id": 1,
-        "menu_title": '에티오피아 시다모 문루게타 문타샤',
-        "menu_subtitle": '부드러운 진한 단맛, 산뜻한 과일 (300ml)',
+        "menu_title": '시다모 문루게타 문타샤',
+        "menu_subtitle": '에티오피아, 단맛, 패션후르츠 (300ml)',
         "menu_price": 3900,
-        "menu_description": "부드러운 진한 단맛, 산뜻한 과일과 꿀 처럼 길게 남는 여운이 남는 연하고 부드러운 핸드드립 커피",
+        "menu_description": "에티오피아 원두, 산뜻한 과일과 꿀이 섞여 부드럽고 진한 단맛이 길게 여운이 남는 연하고 부드러운 핸드드립 커피입니다.",
         "menu_price_options": {
                 "type": 0, # 0 toggle, 1 checkbox
                 "options": [
                     {
-                      "label": "에티오피아 시다모 문루게타 문타샤",
+                      "label": "시다모 문루게타 문타샤",
                       "value": 0, #index 와 같아야함!!
                       "price": 3900,
                     }

@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS orders (
     user_password varchar(30),
     user_location varchar(30),
     menu_ids varchar(100),
+    menu_numbers varchar(100),
     menu_price_options varchar(100),
     menu_add_options varchar(3000),
     is_payed int,
