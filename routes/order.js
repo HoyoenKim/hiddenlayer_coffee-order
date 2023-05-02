@@ -147,6 +147,47 @@ router.delete('/deleteOrder/:order_id', function(req, res, next) {
 	});
 })
 
+router.put('/updateOrderToFinsh/:order_id', function(req, res, next) {
+  // @Description: Update certain order
+  // @Related: OrderCheck.vue, admin.vue
+
+  var order_id = req.params.order_id;
+
+  let updateSql = 'update orders set is_payed = 1 where order_id = ?'
+  let updateParam = [order_id];
+
+  connection.query(updateSql, updateParam, function(err, result, fields) {
+    if(err) {
+      console.log(err);
+      res.status(406).send('Ther is no Order!');
+    }
+    else {
+      res.status(200).send('updateOrderToFinsh Sucess!');
+    }
+  })
+
+})
+
+router.put('/updateOrderToUnfinsh/:order_id', function(req, res, next) {
+  // @Description: Update certain order
+  // @Related: OrderCheck.vue, admin.vue
+
+  var order_id = req.params.order_id;
+
+  let updateSql = 'update orders set is_payed = 0 where order_id = ?'
+  let updateParam = [order_id];
+
+  connection.query(updateSql, updateParam, function(err, result, fields) {
+    if(err) {
+      console.log(err);
+      res.status(406).send('Ther is no Order!');
+    }
+    else {
+      res.status(200).send('updateOrderToUnfinsh Sucess!');
+    }
+  })
+})
+
 //const sqlite3 = require('sqlite3').verbose();
 //let db = new sqlite3.Database('./db/order.db', sqlite3.OPEN_READWRITE, (err) => {
 //  if (err) {

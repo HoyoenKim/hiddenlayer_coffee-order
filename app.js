@@ -5,6 +5,38 @@ const cors         = require('cors');
 const createError  = require('http-errors');
 const bodyParser   = require('body-parser');
 const path         = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require("swagger-jsdoc");
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "LocalOrder Express API with Swagger",
+      version: "0.0.1",
+      description:
+        "This is a simple CRUD API application made with Express and documented with Swagger",
+      contact: {
+        name: "HiddenLayer",
+        email: "cabinkhy@gm.gist.ac.kr",
+      },
+    },
+    servers: [
+      {
+        url: "http://18.118.221.107:3001",
+      },
+    ],
+  },
+  apis: [
+    "./routes/store.js",
+    "./routes/brand.js",
+    "./routes/menu.js",
+    "./routes/event.js",
+    "./routes/order.js",
+  ],
+};
+
+const specs = swaggerJsdoc(options);
+
 
 // using
 const storeRouter = require('./routes/store');
@@ -40,6 +72,11 @@ app.use('/order', orderRouter);
 // not using
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use("/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
