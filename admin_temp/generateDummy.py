@@ -11,13 +11,13 @@ def createStore(baseUrl):
 		                    "store_title": '재야의 커피',
 		                    "store_subtitle": 'Cafe',
 		                    "store_description": '사용자 맞춤 원두 추천 카페',
-                            "store_images_nums": 6,
+                            "store_images_nums": 4,
 		                    "store_order_type": [1, 1, 1], # '테이블 주문 가능', '포장 가능', '배달 가능'
 		                    "store_location": ["35.23021", "126.83982"], # 위도, 경도
 		                    "store_open_time": [[10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22]], # 월 - 일, 공휴일
 		                    "store_official_information": ['류현석', '창업진흥센터 B동 401호', '010-2128-7164'], # 소유자, 장소, 담당자 연락처
 		                    "story_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-		                    "menu_table_ids": [0, 1, 2],
+		                    "menu_table_ids": [0],
 		                    "event_ids": [0, 1, 2, 3, 4, 5, 6, 7],
 		                    "owner_ids": [0], # need to encription
                         })
@@ -255,25 +255,25 @@ def createMenuTable(baseUrl):
     menuTableInfoList = []
     menuTableInfoList.append({
                                 "menu_table_id": 0,
-                                "menu_table_title": '사장님 추천',
+                                "menu_table_title": '시그니처 커피',
                                 "menu_table_subtitle": '이번주 커피',
                                 "menu_ids": [0, 1],
                                 "store_id": 0, # '재야의 커피'
     })
-    menuTableInfoList.append({
-                                "menu_table_id": 1,
-                                "menu_table_title": '블랜디드 원두',
-                                "menu_table_subtitle": '',
-                                "menu_ids": [0],
-                                "store_id": 0, # '재야의 커피'
-    })
-    menuTableInfoList.append({
-                                "menu_table_id": 2,
-                                "menu_table_title": '고급 원두',
-                                "menu_table_subtitle": '하루 10잔 한정 판매',
-                                "menu_ids": [1],
-                                "store_id": 0, # '재야의 커피'
-    })
+    #menuTableInfoList.append({
+    #                            "menu_table_id": 1,
+    #                            "menu_table_title": '블랜디드 원두',
+    #                            "menu_table_subtitle": '',
+    #                            "menu_ids": [0],
+    #                            "store_id": 0, # '재야의 커피'
+    #})
+    #menuTableInfoList.append({
+    #                            "menu_table_id": 2,
+    #                            "menu_table_title": '고급 원두',
+    #                            "menu_table_subtitle": '하루 10잔 한정 판매',
+    #                            "menu_ids": [1],
+    #                            "store_id": 0, # '재야의 커피'
+    #})
     #menuTableInfoList.append({
     #                            "menu_table_id": 3,
     #                            "menu_table_title": '한식',
@@ -325,17 +325,17 @@ def createMenu(baseUrl):
     menuInfoList = []
     menuInfoList.append({
         "menu_id": 0,
-        "menu_title": '밸런스 블랜딩',
-        "menu_subtitle": '게이샤 원두 + 헤리움 원두',
-        "menu_price": 3500,
-        "menu_description": "국내 정상급 바리스타가 만든 게이샤 원두, 이와 최적의 조화를 이루는 헤리움 원두를 섞은 고급 블랜디드 커피입니다.",
+        "menu_title": '콜롬비아 엘파라이소 리치피치',
+        "menu_subtitle": '리치, 복숭아, 블루베리 (300ml)',
+        "menu_price": 3900,
+        "menu_description": "리치,복숭아,블루베리,메이플 시럽맛이 나는 연하고 부드러운 핸드드립 커피",
         "menu_price_options": {
                 "type": 0, # 0 toggle, 1 checkbox
                 "options": [
                     {
-                      "label": "밸런스 블랜딩",
+                      "label": "콜롬비아 엘파라이소 리치피치",
                       "value": 0,
-                      "price": 3500,
+                      "price": 3900,
                     }
                 ]
         },
@@ -364,21 +364,21 @@ def createMenu(baseUrl):
             }
         ],
         "store_id": 0, # 재야의 커피
-        "menu_table_ids": [0, 1],
+        "menu_table_ids": [0],
     })
     menuInfoList.append({
         "menu_id": 1,
-        "menu_title": '싱글 오리진',
-        "menu_subtitle": '최고급 생두',
-        "menu_price": 4000,
-        "menu_description": "국내 정상급 로스터가 최고급 생두로 로스팅하였습니다. 한 종류의 최고급 원두로 맛을 극한까지 끌어냈습니다.",
+        "menu_title": '에티오피아 시다모 문루게타 문타샤',
+        "menu_subtitle": '부드러운 진한 단맛, 산뜻한 과일 (300ml)',
+        "menu_price": 3900,
+        "menu_description": "부드러운 진한 단맛, 산뜻한 과일과 꿀 처럼 길게 남는 여운이 남는 연하고 부드러운 핸드드립 커피",
         "menu_price_options": {
                 "type": 0, # 0 toggle, 1 checkbox
                 "options": [
                     {
-                      "label": "싱글 오리진",
+                      "label": "에티오피아 시다모 문루게타 문타샤",
                       "value": 0, #index 와 같아야함!!
-                      "price": 4000,
+                      "price": 3900,
                     }
                 ]
         },
@@ -388,7 +388,7 @@ def createMenu(baseUrl):
                 "name": "온도",
                 "options": [
                     {
-                      "label": "ICE",
+                      "label": "HOT",
                       "value": 0, #index 와 같아야함!!
                       "price": 0,
                     }
@@ -407,7 +407,7 @@ def createMenu(baseUrl):
             }
         ],
         "store_id": 0, # 재야의 커피
-        "menu_table_ids": [0, 2],
+        "menu_table_ids": [0],
     })
     #menuInfoList.append({
     #    "menu_id": 2,
@@ -976,8 +976,8 @@ def rename():
             i += 1
 
 if __name__ == "__main__":
-    baseUrl = 'http://localhost:3001/'
-    #baseUrl = 'http://18.118.221.107:3001/'
+    #baseUrl = 'http://localhost:3001/'
+    baseUrl = 'http://18.118.221.107:3001/'
     createStore(baseUrl)
     createStory(baseUrl)
     createMenuTable(baseUrl)
