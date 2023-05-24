@@ -94,9 +94,9 @@ def createVenue(baseUrl):
                         "venue_description": "GIST 문화행사위원회 축제 (2023.05.25)",
                         "venue_address": "광주 북구 첨단과기로123 제2학생회관",
                         "venue_location": [],
-                        "venue_images_nums": 3,
+                        "venue_images_nums": 10,
                         "venue_keyword_ids": [],
-                        "event_ids": [4, 5],
+                        "event_ids": [],
                         "owner_ids": [0],
                         "booth_ids": [0, 1, 2, 3, 4, 5, 6, 7] 
                     })
@@ -172,7 +172,55 @@ def createKeyword(baseUrl):
                         "origin_type": 0,
                         "origin_id": 0
                     })
-    
+    keywordList.append({
+                        "keyword_id": 9,
+                        "keyword_title": "Speciality",
+                        "keyword_description": "커피에 진심인 사람들이 모여 원두와 추출법에 대해 연구하여 만들어낸 최상의 조합으로 커피를 내려 드립니다.",
+                        "origin_type": 2, # 0: 매장, 1: 행사장, 2 부스
+                        "origin_id": 7
+                    })
+    keywordList.append({
+                        "keyword_id": 10,
+                        "keyword_title": "엘파라이소 리치 - 피치",
+                        "keyword_description": "리치, 복숭아, 블루베리 향이 나는 콜롬비아산 원두로 내린 커피",
+                        "origin_type": 2,
+                        "origin_id": 7
+                    })
+    keywordList.append({
+                        "keyword_id": 11,
+                        "keyword_title": "커피 오마카세 코스",
+                        "keyword_description": "4종류 이상의 원두로 내리는 커피 오마카세",
+                        "origin_type": 2,
+                        "origin_id": 7
+                    })
+    keywordList.append({
+                        "keyword_id": 12,
+                        "keyword_title": "Location",
+                        "keyword_description": "GIST 문행위 부스, 자연과학동 건너편, 푸드트럭 옆",
+                        "origin_type": 2,
+                        "origin_id": 7
+                    })
+    keywordList.append({
+                        "keyword_id": 13,
+                        "keyword_title": "Signature",
+                        "keyword_description": "엘파라이소 리치-피치: 1000원\n커피 오마카세: 5900원\n * 메뉴 가격에 변동이 있을 수 있습니다.",
+                        "origin_type": 2,
+                        "origin_id": 7
+                    })
+    keywordList.append({
+                        "keyword_id": 14,
+                        "keyword_title": "Hours",
+                        "keyword_description": "15분 소요",
+                        "origin_type": 2,
+                        "origin_id": 7
+                    })
+    keywordList.append({
+                        "keyword_id": 15,
+                        "keyword_title": "Calls",
+                        "keyword_description": "010-2590-2746",
+                        "origin_type": 2,
+                        "origin_id": 7
+                    })
     
     for kewordInfo in keywordList:
         response = requests.post(url, json=kewordInfo, verify=False)
@@ -1033,8 +1081,123 @@ def createEvent(baseUrl):
         "origin_id": 2,
         "event_subscription_number": 0,
     })
+    eventInfoList.append({
+        "event_id":  4,
+        "event_title": '증정: 스페셜티 케이크 증정',
+        "event_subtitle": '케이크 증정',
+        "event_description": '부스 방문시 서비스로 케이크를 제공합니다.',
+        "event_duedate": str(datetime(2023, 12, 31)),
+        "event_images_nums": 1,
+        "origin_type": 2, # 0: 매장, 1: 행사장, 2 부스
+        "origin_id": 7,
+        "event_subscription_number": 0,
+    })
     for eventInfo in eventInfoList:
         response = requests.post(url, json=eventInfo, verify=False)
+        print(response)
+
+def createBooth(baseUrl):
+    url = baseUrl + 'booth/createBooth'
+    boothInfoList = []
+    boothInfoList.append({
+        "booth_id": 0,
+        "booth_title": "포토존",
+        "booth_subtitle": "",
+        "booth_description": "",
+        "booth_address": "",
+        "booth_location": [14.29 , 9.09 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 0,
+        "booth_keyword_ids": [],
+        "booth_menutable_ids": [],
+        "booth_events_ids": [],
+    })
+    boothInfoList.append({
+        "booth_id": 1,
+        "booth_title": "무냉포차",
+        "booth_subtitle": "",
+        "booth_description": "",
+        "booth_address": "",
+        "booth_location": [28.57 , 9.09 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 0,
+        "booth_keyword_ids": [],
+        "booth_menutable_ids": [],
+        "booth_events_ids": [],
+    })
+    boothInfoList.append({
+        "booth_id": 2,
+        "booth_title": "이쑤시개",
+        "booth_subtitle": "",
+        "booth_description": "",
+        "booth_address": "",
+        "booth_location": [42.86 , 9.09 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 0,
+        "booth_keyword_ids": [],
+        "booth_menutable_ids": [],
+        "booth_events_ids": [],
+    })
+    boothInfoList.append({
+        "booth_id": 3,
+        "booth_title": "온새미로",
+        "booth_subtitle": "",
+        "booth_description": "",
+        "booth_address": "",
+        "booth_location": [57.14 , 9.09 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 0,
+        "booth_keyword_ids": [],
+        "booth_menutable_ids": [],
+        "booth_events_ids": [],
+    })
+    boothInfoList.append({
+        "booth_id": 4,
+        "booth_title": "문방구",
+        "booth_subtitle": "",
+        "booth_description": "",
+        "booth_address": "",
+        "booth_location": [14.29 , 72.73 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 0,
+        "booth_keyword_ids": [],
+        "booth_menutable_ids": [],
+        "booth_events_ids": [],
+    })
+    boothInfoList.append({
+        "booth_id": 5,
+        "booth_title": "전무냉이",
+        "booth_subtitle": "",
+        "booth_description": "",
+        "booth_address": "",
+        "booth_location": [28.57 , 72.73 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 0,
+        "booth_keyword_ids": [],
+        "booth_menutable_ids": [],
+        "booth_events_ids": [],
+    })
+    boothInfoList.append({
+        "booth_id": 6,
+        "booth_title": "사각사각",
+        "booth_subtitle": "",
+        "booth_description": "",
+        "booth_address": "",
+        "booth_location": [42.86 , 72.73 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 0,
+        "booth_keyword_ids": [],
+        "booth_menutable_ids": [],
+        "booth_events_ids": [],
+    })
+    boothInfoList.append({
+        "booth_id": 7,
+        "booth_title": "스페셜티",
+        "booth_subtitle": "",
+        "booth_description": "잘 내린 핸드드립 한잔,\n잠을 포기하게 만드는 맛",
+        "booth_address": "",
+        "booth_location": [57.14 , 72.73 , 14.29 , 18.18], #x%, y%, dx%, dy%
+        "booth_images_nums": 1,
+        "booth_keyword_ids": [9, 10, 11, 12, 13, 14, 15],
+        "booth_menutable_ids": [1],
+        "booth_events_ids": [4],
+    })
+
+    for boothInfo in boothInfoList:
+        response = requests.post(url, json=boothInfo, verify=False)
         print(response)
 
 def rename():
@@ -1055,12 +1218,32 @@ def rename():
 if __name__ == "__main__":
     baseUrl = 'https://localhost:3000/'
     #baseUrl = 'http://18.118.221.107:3001/'
-    #createStore(baseUrl)
-    #createVenue(baseUrl)
-    #createKeyword(baseUrl)
+    createStore(baseUrl)
+    createVenue(baseUrl)
+    createKeyword(baseUrl)
     #createStory(baseUrl)
     #createMenuTable(baseUrl)
     #createMenu(baseUrl)
     createEvent(baseUrl)
+    createBooth(baseUrl)
     #rename()
     
+    '''
+    m = [[1,1,1,2],
+    [2,1,1,2],
+    [3,1,1,2],
+    [4,1,1,2],
+    [1,8,1,2],
+    [2,8,1,2],
+    [3,8,1,2],
+    [4,8,1,2]]
+    
+    x = 1/7
+    y = 1/11
+    for mm in m:
+    print(round(mm[0]*x*100, 2), ',',
+          round(mm[1]*y*100, 2), ',',
+          round(mm[2]*x*100, 2), ',',
+          round(mm[3]*y*100, 2))
+    '''
+    None

@@ -50,6 +50,7 @@ const eventRouter = require('./routes/event');
 const usersRouter = require('./routes/users');
 const venueRouter = require('./routes/venue');
 const keywordRouter = require('./routes/keyword');
+const boothRouter = require('./routes/booth');
 
 // not using
 const indexRouter = require('./routes/index');
@@ -103,6 +104,7 @@ https.createServer(
   app.use('/users', usersRouter),
   app.use('/venue', venueRouter),
   app.use('/keyword', keywordRouter),
+  app.use('/booth', boothRouter),
 
   app.use("/api-docs",
     swaggerUi.serve,
