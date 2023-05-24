@@ -8,18 +8,46 @@ USE order_db;
 CREATE TABLE IF NOT EXISTS stores (
     store_id int NOT NULL,
     store_title varchar(30),
-    store_subtitle varchar(10),
+    store_type varchar(10),
+    store_subtitle varchar(30),
     store_description varchar(100),
+    store_address varchar(30),
+    store_location varchar(30),
     store_images_nums int,
     store_order_type varchar(30),
-    store_location varchar(30),
+    store_payment_type varchar(100),
     store_open_time varchar(100),
     store_official_information varchar(100),
-    story_ids varchar(300),
+    store_keyword_ids varchar(100),
     menu_table_ids varchar(100),
     event_ids varchar(300),
     owner_ids varchar(10),
+    store_subscription_number int,
     primary key (store_id)
+);
+
+CREATE TABLE IF NOT EXISTS venues (
+    venue_id int NOT NULL,
+    venue_title varchar(30),
+    venue_subtitle varchar(10),
+    venue_description varchar(100),
+    venue_address varchar(30),
+    venue_location varchar(30),
+    venue_images_nums int,
+    venue_keyword_ids varchar(100),
+    event_ids varchar(300),
+    owner_ids varchar(10),
+    booth_ids varchar(300),
+    primary key (venue_id)
+);
+
+CREATE TABLE IF NOT EXISTS keywords (
+    keyword_id int NOT NULL,
+    keyword_title varchar(30),
+    keyword_description varchar(300),
+    origin_type int,
+    origin_id int,
+    primary key (keyword_id)
 );
 
 CREATE TABLE IF NOT EXISTS brands (
@@ -71,7 +99,10 @@ CREATE TABLE IF NOT EXISTS events (
     event_subtitle varchar(100),
     event_description varchar(1000),
     event_duedate varchar(30),
-    store_id int,
+    event_images_nums int,
+    origin_type int,
+    origin_id int,
+    event_subscription_number int,
     primary key (event_id)
 );
 

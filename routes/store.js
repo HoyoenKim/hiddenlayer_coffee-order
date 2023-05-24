@@ -29,33 +29,41 @@ router.post('/createStore', function(req, res, next) {
 	let inSql = 'insert into stores('
 	+ 'store_id, '
 	+ 'store_title, '
+	+ 'store_type, '
 	+ 'store_subtitle, '
 	+ 'store_description, '
+	+ 'store_address, '
+	+ 'store_location, '
 	+ 'store_images_nums, '
 	+ 'store_order_type, '
-	+ 'store_location, '
+	+ 'store_payment_type, '
 	+ 'store_open_time, '
 	+ 'store_official_information, '
-	+ 'story_ids, '
+	+ 'store_keyword_ids, '
 	+ 'menu_table_ids, '
 	+ 'event_ids, '
-	+ 'owner_ids'
-	+ ') values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+	+ 'owner_ids, '
+	+ 'store_subscription_number'
+	+ ') values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 	
 	let inParam = [
 		storeInfo.store_id,
-		storeInfo.store_title, 
-		storeInfo.store_subtitle, 
+		storeInfo.store_title,
+		storeInfo.store_type,
+		storeInfo.store_subtitle,
 		storeInfo.store_description,
+		storeInfo.store_address,
+		JSON.stringify(storeInfo.store_location),
 		storeInfo.store_images_nums,
 		JSON.stringify(storeInfo.store_order_type), 
-		JSON.stringify(storeInfo.store_location),
+		JSON.stringify(storeInfo.store_payment_type),
 		JSON.stringify(storeInfo.store_open_time),
 		JSON.stringify(storeInfo.store_official_information),
-		JSON.stringify(storeInfo.story_ids),
+		JSON.stringify(storeInfo.store_keyword_ids),
 		JSON.stringify(storeInfo.menu_table_ids),
 		JSON.stringify(storeInfo.event_ids),
 		JSON.stringify(storeInfo.owner_ids),
+		storeInfo.store_subscription_number
 	];
 	
 	connection.query(inSql, inParam, function(err, result, fields) {

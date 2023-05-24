@@ -4,22 +4,64 @@ from datetime import datetime
 
 def createStore(baseUrl):
     url = baseUrl + 'store/createStore'
-    
+
     storeInfoList = []
     storeInfoList.append({
                             "store_id": 0,
 		                    "store_title": '재야의 커피',
-		                    "store_subtitle": 'Cafe',
-		                    "store_description": '사용자 맞춤 원두 추천 카페',
+		                    "store_type": '카페',
+                            "store_subtitle": "사용자 맞춤 원두 추천 카페",
+		                    "store_description": "잘 내린 핸드드립 한잔,\n잠을 포기하게 만드는 맛",
+                            "store_address": "광주 북구 첨단과기로 123 창업진흥센터 B동 501호",
+                            "store_location": ["35.23021", "126.83982"], # 위도, 경도                      
                             "store_images_nums": 4,
 		                    "store_order_type": [1, 1, 1], # '테이블 주문 가능', '포장 가능', '배달 가능'
-		                    "store_location": ["35.23021", "126.83982"], # 위도, 경도
+		                    "store_payment_type": [0, 1, "우리은행 류현석 1002-657-201417"], # '카드, 계좌이체'
 		                    "store_open_time": [[10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22], [10, 22]], # 월 - 일, 공휴일
 		                    "store_official_information": ['류현석', '창업진흥센터 B동 401호', '010-2128-7164'], # 소유자, 장소, 담당자 연락처
-		                    "story_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+		                    "store_keyword_ids": [0, 1, 2, 3, 4, 5, 6],
 		                    "menu_table_ids": [0],
-		                    "event_ids": [0, 1, 2, 3, 4, 5, 6, 7],
+		                    "event_ids": [0, 1],
 		                    "owner_ids": [0], # need to encription
+                            "store_subscription_number": 0
+                        })
+    storeInfoList.append({
+                            "store_id": 1,
+		                    "store_title": '삼복당',
+		                    "store_type": '음식점',
+                            "store_subtitle": "닭칼국수 맛집",
+		                    "store_description": "따끈한 국물로,\n겨울의 추위를 잊게 만드는 맛",
+                            "store_address": "광주 광산구 첨단중앙로182번길 16 삼복당",
+                            "store_location": [], # 위도, 경도                      
+                            "store_images_nums": 0,
+		                    "store_order_type": [0, 0, 0], # '테이블 주문 가능', '포장 가능', '배달 가능'
+		                    "store_payment_type": [0, 0], # '카드, 계좌이체'
+		                    "store_open_time": [], # 월 - 일, 공휴일
+		                    "store_official_information": ['', '첨단중앙로182번길 16 삼복당', '062-972-4946'], # 소유자, 장소, 담당자 연락처
+		                    "store_keyword_ids": [7],
+		                    "menu_table_ids": [],
+		                    "event_ids": [2],
+		                    "owner_ids": [0], # need to encription
+                            "store_subscription_number": 0
+                        })
+    storeInfoList.append({
+                            "store_id": 2,
+		                    "store_title": '소코아',
+		                    "store_type": '음식점',
+                            "store_subtitle": "돈까스 맛집",
+		                    "store_description": "일식 볼모지에서 찾아낸,\n돈까스 카레 맛집",
+                            "store_address": "광주 광산구 월계동 875-6 1층",
+                            "store_location": [], # 위도, 경도                      
+                            "store_images_nums": 0,
+		                    "store_order_type": [0, 0, 0], # '테이블 주문 가능', '포장 가능', '배달 가능'
+		                    "store_payment_type": [0, 0], # '카드, 계좌이체'
+		                    "store_open_time": [], # 월 - 일, 공휴일
+		                    "store_official_information": ['', '월계동 875-6 1층', '010-8622-4300'], # 소유자, 장소, 담당자 연락처
+		                    "store_keyword_ids": [8],
+		                    "menu_table_ids": [],
+		                    "event_ids": [3],
+		                    "owner_ids": [0], # need to encription
+                            "store_subscription_number": 0
                         })
     #storeInfoList.append({
     #                        "store_id": 1,
@@ -38,7 +80,102 @@ def createStore(baseUrl):
     #                    })
     
     for storeInfo in storeInfoList:
-        response = requests.post(url, json=storeInfo)
+        response = requests.post(url, json=storeInfo, verify=False)
+        print(response)
+
+def createVenue(baseUrl):
+    url = baseUrl + 'venue/createVenue'
+
+    venueInfoList = []
+    venueInfoList.append({
+                        "venue_id": 0,
+                        "venue_title": "GIST 문행위 행사",
+                        "venue_subtitle": "",
+                        "venue_description": "GIST 문화행사위원회 축제 (2023.05.25)",
+                        "venue_address": "광주 북구 첨단과기로123 제2학생회관",
+                        "venue_location": [],
+                        "venue_images_nums": 3,
+                        "venue_keyword_ids": [],
+                        "event_ids": [4, 5],
+                        "owner_ids": [0],
+                        "booth_ids": [0, 1, 2, 3, 4, 5, 6, 7] 
+                    })
+    
+    for venueInfo in venueInfoList:
+        response = requests.post(url, json=venueInfo, verify=False)
+        print(response)
+
+def createKeyword(baseUrl):
+    url = baseUrl + 'keyword/createKeyword'
+
+    keywordList = []
+    keywordList.append({
+                        "keyword_id": 0,
+                        "keyword_title": "Speciality",
+                        "keyword_description": "커피에 진심인 사람들이 모여 원두와 추출법에 대해 연구하여 만들어낸 최상의 조합으로 커피를 내려 드립니다.",
+                        "origin_type": 0, # 0: 매장, 1: 행사장, 2 부스
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 1,
+                        "keyword_title": "엘파라이소 리치 - 피치",
+                        "keyword_description": "리치, 복숭아, 블루베리 향이 나는 콜롬비아산 원두로 내린 커피",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 2,
+                        "keyword_title": "시다모 문루게타 문타샤",
+                        "keyword_description": "단맛, 패션후르츠 향이 나는 에티오피산 원두로 내린 커피",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 3,
+                        "keyword_title": "Location",
+                        "keyword_description": "광주 북구 첨단과기로 123 창업진흥센터 B동 403호",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 4,
+                        "keyword_title": "Signature",
+                        "keyword_description": "엘파라이소 리치-피치: 3900원\n시다모 문루게타 문타샤: 3900원\n * 메뉴 가격에 변동이 있을 수 있습니다.",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 5,
+                        "keyword_title": "Operations",
+                        "keyword_description": "월 - 금 11:00 - 13:00",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 6,
+                        "keyword_title": "Calls",
+                        "keyword_description": "010-2590-2746",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 7,
+                        "keyword_title": "Location",
+                        "keyword_description": "광주 광산구 첨단중앙로182번길 16 삼복당",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    keywordList.append({
+                        "keyword_id": 8,
+                        "keyword_title": "Location",
+                        "keyword_description": "광주 광산구 월계동 875-6 1층",
+                        "origin_type": 0,
+                        "origin_id": 0
+                    })
+    
+    
+    for kewordInfo in keywordList:
+        response = requests.post(url, json=kewordInfo, verify=False)
         print(response)
 
 def createStory(baseUrl):
@@ -854,110 +991,50 @@ def createEvent(baseUrl):
     eventInfoList = []
     eventInfoList.append({
         "event_id":  0,
-        "event_title": '재야의 커피 판매 시작',
-        "event_subtitle": '판매 시작',
-        "event_description": '재야의 커피 판매 시작합니다.',
-        "event_duedate": str(datetime(2023, 1, 1)),
-        "store_id": 0, # 재야의 커피
+        "event_title": '신메뉴 출시: 엘파라이소 리치 - 피치',
+        "event_subtitle": '리치, 블루베리, 복숭아',
+        "event_description": '엘파라이소 리치 - 피치 판매 시작합니다.',
+        "event_duedate": str(datetime(2023, 4, 30)),
+        "event_images_nums": 1,
+        "origin_type": 0, # 0: 매장, 1: 행사장, 2 부스
+        "origin_id": 0, # 재야의 커피
+        "event_subscription_number": 0,
     })
     eventInfoList.append({
         "event_id":  1,
-        "event_title": '신메뉴 출시: 블랜디드 원두',
-        "event_subtitle": '블랜디드 원두 출시',
-        "event_description": '블랜디드 원두 판매 시작합니다.',
-        "event_duedate": str(datetime(2023, 1, 1)),
-        "store_id": 0, # 재야의 커피
+        "event_title": '신메뉴 출시: 시다모 문루게타 문타샤',
+        "event_subtitle": '단맛, 패션후르츠',
+        "event_description": '시다모 문루게타 문타샤 판매 시작합니다.',
+        "event_duedate": str(datetime(2023, 4, 30)),
+        "event_images_nums": 1,
+        "origin_type": 0, # 0: 매장, 1: 행사장, 2 부스
+        "origin_id": 0, # 재야의 커피
+        "event_subscription_number": 0,
     })
     eventInfoList.append({
         "event_id":  2,
-        "event_title": '신메뉴 출시: 싱글 오리진',
-        "event_subtitle": '싱글 오리진 출시',
-        "event_description": '싱글 오리진 판매 시작합니다.',
-        "event_duedate": str(datetime(2023, 2, 1)),
-        "store_id": 0, # 재야의 커피
+        "event_title": '증정: 인스타 스토리 이벤트',
+        "event_subtitle": '인스타 스토리 게시',
+        "event_description": '정인분 주문하고/인스타 스토리 게시할 시 탄산음료 500mL 1개를 제공합니다.',
+        "event_duedate": str(datetime(2023, 12, 31)),
+        "event_images_nums": 1,
+        "origin_type": 0, # 0: 매장, 1: 행사장, 2 부스
+        "origin_id": 1,
+        "event_subscription_number": 0,
     })
     eventInfoList.append({
         "event_id":  3,
-        "event_title": 'test',
-        "event_subtitle": 'testtest',
-        "event_description": 'testtesttest',
-        "event_duedate": str(datetime(2023, 3, 1)),
-        "store_id": 0, # 재야의 커피
+        "event_title": '증정: GIST 방문 주문 이벤트',
+        "event_subtitle": '탄산음료 증정',
+        "event_description": '테이블 당 콜라 또는 사이다를 서비스로 제공합니다.',
+        "event_duedate": str(datetime(2023, 12, 31)),
+        "event_images_nums": 1,
+        "origin_type": 0, # 0: 매장, 1: 행사장, 2 부스
+        "origin_id": 2,
+        "event_subscription_number": 0,
     })
-    eventInfoList.append({
-        "event_id":  4,
-        "event_title": 'test',
-        "event_subtitle": 'testtest',
-        "event_description": 'testtesttest',
-        "event_duedate": str(datetime(2023, 3, 15)),
-        "store_id": 0, # 재야의 커피
-    })
-    eventInfoList.append({
-        "event_id":  5,
-        "event_title": 'test',
-        "event_subtitle": 'testtest',
-        "event_description": 'testtesttest',
-        "event_duedate": str(datetime(2023, 3, 30)),
-        "store_id": 0, # 재야의 커피
-    })
-    eventInfoList.append({
-        "event_id":  6,
-        "event_title": '세상에서 가장 싼 커피',
-        "event_subtitle": '커피 할인 이벤트',
-        "event_description": '선착순 100분에게 할인 혜택을 제공합니다.',
-        "event_duedate": str(datetime(2023, 4, 30)),
-        "store_id": 0, # 재야의 커피
-    })
-    eventInfoList.append({
-        "event_id":  7,
-        "event_title": '세상에서 가장 싼 와인',
-        "event_subtitle": '와인 할인 이벤트',
-        "event_description": '선착순 100분에게 할인 혜택을 제공합니다.',
-        "event_duedate": str(datetime(2023, 4, 30)),
-        "store_id": 0, # 재야의 커피
-    })
-    #eventInfoList.append({
-    #    "event_id":  8,
-    #    "event_title": 'test',
-    #    "event_subtitle": 'testtest',
-    #    "event_description": 'testtestest',
-    #    "event_duedate": str(datetime(2023, 1, 15)),
-    #    "store_id": 1, # S305
-    #})
-    #eventInfoList.append({
-    #    "event_id":  9,
-    #    "event_title": 'test',
-    #    "event_subtitle": 'testtest',
-    #    "event_description": 'testtestest',
-    #    "event_duedate": str(datetime(2023, 2, 15)),
-    #    "store_id": 1, # S305
-    #})
-    #eventInfoList.append({
-    #    "event_id":  10,
-    #    "event_title": 'test',
-    #    "event_subtitle": 'testtest',
-    #    "event_description": 'testtestest',
-    #    "event_duedate": str(datetime(2023, 3, 15)),
-    #    "store_id": 1, # S305
-    #})
-    #eventInfoList.append({
-    #    "event_id":  11,
-    #    "event_title": 'test',
-    #    "event_subtitle": 'testtest',
-    #    "event_description": 'testtestest',
-    #    "event_duedate": str(datetime(2023, 4, 15)),
-    #    "store_id": 1, # S305
-    #})
-    #eventInfoList.append({
-    #    "event_id":  12,
-    #    "event_title": 'test',
-    #    "event_subtitle": 'testtest',
-    #    "event_description": 'testtestest',
-    #    "event_duedate": str(datetime(2023, 5, 15)),
-    #    "store_id": 1, # S305
-    #})
     for eventInfo in eventInfoList:
-        response = requests.post(url, json=eventInfo)
+        response = requests.post(url, json=eventInfo, verify=False)
         print(response)
 
 def rename():
@@ -976,12 +1053,14 @@ def rename():
             i += 1
 
 if __name__ == "__main__":
-    #baseUrl = 'http://localhost:3001/'
-    baseUrl = 'http://18.118.221.107:3001/'
-    createStore(baseUrl)
-    createStory(baseUrl)
-    createMenuTable(baseUrl)
-    createMenu(baseUrl)
+    baseUrl = 'https://localhost:3000/'
+    #baseUrl = 'http://18.118.221.107:3001/'
+    #createStore(baseUrl)
+    #createVenue(baseUrl)
+    #createKeyword(baseUrl)
+    #createStory(baseUrl)
+    #createMenuTable(baseUrl)
+    #createMenu(baseUrl)
     createEvent(baseUrl)
     #rename()
     

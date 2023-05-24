@@ -28,8 +28,11 @@ router.post('/createEvent', function(req, res, next) {
 	+ 'event_subtitle, '
 	+ 'event_description, '
 	+ 'event_duedate, '
-	+ 'store_id'
-	+ ') values(?, ?, ?, ?, ?, ?)';
+	+ 'event_images_nums, '
+	+ 'origin_type, '
+	+ 'origin_id, '
+	+ 'event_subscription_number'
+	+ ') values(?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 	let inParam = [
 		eventInfo.event_id,
@@ -37,7 +40,10 @@ router.post('/createEvent', function(req, res, next) {
 		eventInfo.event_subtitle,
 		eventInfo.event_description,
 		eventInfo.event_duedate,
-		eventInfo.store_id
+		eventInfo.event_images_nums,
+		eventInfo.origin_type,
+		eventInfo.origin_id,
+		eventInfo.event_subscription_number
 	];
 
 	connection.query(inSql, inParam, function(err, result, fields) {
