@@ -56,16 +56,15 @@ const boothRouter = require('./routes/booth');
 const indexRouter = require('./routes/index');
 
 // database
-const db = require("./models");
-const Role = db.role;
+//const db = require("./models");
+//const Role = db.role;
 
-db.sequelize.sync();
+//db.sequelize.sync();
 //force: true will drop the table if it already exists
 //db.sequelize.sync({force: true}).then(() => {
 //  console.log('Drop and Resync Database with { force: true }');
 //  initial();
 //});
-
 
 const app = express();
 app.set('views', path.join(__dirname, 'views')),
@@ -87,46 +86,40 @@ app.use(
 ),
 app.use('/static',express.static(path.join(__dirname, 'public'))),
 // routes
-require("./routes/auth.routes")(app),
-require("./routes/user.routes")(app),
+//require("./routes/auth.routes")(app),
+//require("./routes/user.routes")(app),
 
-https.createServer(
-  {
-    key: fs.readFileSync(__dirname + '/keys/key.pem', 'utf-8'),
-    cert: fs.readFileSync(__dirname + '/keys/cert.pem', 'utf-8'),
-  },
-  app.use('/', indexRouter),
-  app.use('/store', storeRouter),
-  app.use('/brand', brandRouter),
-  app.use('/menu', menuRouter),
-  app.use('/event', eventRouter),
-  app.use('/order', orderRouter),
-  app.use('/users', usersRouter),
-  app.use('/venue', venueRouter),
-  app.use('/keyword', keywordRouter),
-  app.use('/booth', boothRouter),
 
-  app.use("/api-docs",
-    swaggerUi.serve,
-    swaggerUi.setup(specs)
-  ),
+app.use('/', indexRouter);
+app.use('/store', storeRouter);
+app.use('/brand', brandRouter);
+app.use('/menu', menuRouter);
+app.use('/event', eventRouter);
+app.use('/order', orderRouter);
+app.use('/users', usersRouter);
+app.use('/venue', venueRouter);
+app.use('/keyword', keywordRouter);
+app.use('/booth', boothRouter);
 
-  // catch 404 and forward to error handler
-  app.use(function(req, res, next) {
-    next(createError(404));
-  }),
+app.use("/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
 
-  // error handler
-  app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
-  })
-).listen(3000);
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 function initial() {
   Role.create({

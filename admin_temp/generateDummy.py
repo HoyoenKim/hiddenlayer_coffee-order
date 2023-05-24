@@ -1216,8 +1216,8 @@ def rename():
             i += 1
 
 if __name__ == "__main__":
-    baseUrl = 'https://localhost:3000/'
-    #baseUrl = 'http://18.118.221.107:3001/'
+    #baseUrl = 'https://localhost:3000/'
+    baseUrl = 'https://18.118.221.107:3000/'
     createStore(baseUrl)
     createVenue(baseUrl)
     createKeyword(baseUrl)
