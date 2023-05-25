@@ -25,44 +25,44 @@ def createStore(baseUrl):
 		                    "owner_ids": [0], # need to encription
                             "store_subscription_number": 0
                         })
-    storeInfoList.append({
-                            "store_id": 1,
-		                    "store_title": '삼복당',
-		                    "store_type": '음식점',
-                            "store_subtitle": "닭칼국수 맛집",
-		                    "store_description": "따끈한 국물로,\n겨울의 추위를 잊게 만드는 맛",
-                            "store_address": "광주 광산구 첨단중앙로182번길 16 삼복당",
-                            "store_location": [], # 위도, 경도                      
-                            "store_images_nums": 0,
-		                    "store_order_type": [0, 0, 0], # '테이블 주문 가능', '포장 가능', '배달 가능'
-		                    "store_payment_type": [0, 0], # '카드, 계좌이체'
-		                    "store_open_time": [], # 월 - 일, 공휴일
-		                    "store_official_information": ['', '첨단중앙로182번길 16 삼복당', '062-972-4946'], # 소유자, 장소, 담당자 연락처
-		                    "store_keyword_ids": [7],
-		                    "menu_table_ids": [],
-		                    "event_ids": [2],
-		                    "owner_ids": [0], # need to encription
-                            "store_subscription_number": 0
-                        })
-    storeInfoList.append({
-                            "store_id": 2,
-		                    "store_title": '소코아',
-		                    "store_type": '음식점',
-                            "store_subtitle": "돈까스 맛집",
-		                    "store_description": "일식 볼모지에서 찾아낸,\n돈까스 카레 맛집",
-                            "store_address": "광주 광산구 월계동 875-6 1층",
-                            "store_location": [], # 위도, 경도                      
-                            "store_images_nums": 0,
-		                    "store_order_type": [0, 0, 0], # '테이블 주문 가능', '포장 가능', '배달 가능'
-		                    "store_payment_type": [0, 0], # '카드, 계좌이체'
-		                    "store_open_time": [], # 월 - 일, 공휴일
-		                    "store_official_information": ['', '월계동 875-6 1층', '010-8622-4300'], # 소유자, 장소, 담당자 연락처
-		                    "store_keyword_ids": [8],
-		                    "menu_table_ids": [],
-		                    "event_ids": [3],
-		                    "owner_ids": [0], # need to encription
-                            "store_subscription_number": 0
-                        })
+    #storeInfoList.append({
+    #                        "store_id": 1,
+	#	                    "store_title": '삼복당',
+	#	                    "store_type": '음식점',
+    #                        "store_subtitle": "닭칼국수 맛집",
+	#	                    "store_description": "따끈한 국물로,\n겨울의 추위를 잊게 만드는 맛",
+    #                        "store_address": "광주 광산구 첨단중앙로182번길 16 삼복당",
+    #                        "store_location": [], # 위도, 경도                      
+    #                        "store_images_nums": 0,
+	#	                    "store_order_type": [0, 0, 0], # '테이블 주문 가능', '포장 가능', '배달 가능'
+	#	                    "store_payment_type": [0, 0], # '카드, 계좌이체'
+	#	                    "store_open_time": [], # 월 - 일, 공휴일
+	#	                    "store_official_information": ['', '첨단중앙로182번길 16 삼복당', '062-972-4946'], # 소유자, 장소, 담당자 연락처
+	#	                    "store_keyword_ids": [7],
+	#	                    "menu_table_ids": [],
+	#	                    "event_ids": [2],
+	#	                    "owner_ids": [0], # need to encription
+    #                        "store_subscription_number": 0
+    #                    })
+    #storeInfoList.append({
+    #                        "store_id": 2,
+	#	                    "store_title": '소코아',
+	#	                    "store_type": '음식점',
+    #                        "store_subtitle": "돈까스 맛집",
+	#	                    "store_description": "일식 볼모지에서 찾아낸,\n돈까스 카레 맛집",
+    #                        "store_address": "광주 광산구 월계동 875-6 1층",
+    #                        "store_location": [], # 위도, 경도                      
+    #                        "store_images_nums": 0,
+	#	                    "store_order_type": [0, 0, 0], # '테이블 주문 가능', '포장 가능', '배달 가능'
+	#	                    "store_payment_type": [0, 0], # '카드, 계좌이체'
+	#	                    "store_open_time": [], # 월 - 일, 공휴일
+	#	                    "store_official_information": ['', '월계동 875-6 1층', '010-8622-4300'], # 소유자, 장소, 담당자 연락처
+	#	                    "store_keyword_ids": [8],
+	#	                    "menu_table_ids": [],
+	#	                    "event_ids": [3],
+	#	                    "owner_ids": [0], # need to encription
+    #                        "store_subscription_number": 0
+    #                    })
     #storeInfoList.append({
     #                        "store_id": 1,
 		#                    "store_title": 'S305',
@@ -93,7 +93,7 @@ def createVenue(baseUrl):
                         "venue_subtitle": "",
                         "venue_description": "GIST 문화행사위원회 축제 (2023.05.25)",
                         "venue_address": "광주 북구 첨단과기로123 제2학생회관",
-                        "venue_location": [],
+                        "venue_location": ["35.22972", "126.84595"],
                         "venue_images_nums": 10,
                         "venue_keyword_ids": [],
                         "event_ids": [],
@@ -1220,12 +1220,12 @@ if __name__ == "__main__":
     baseUrl = 'https://18.118.221.107:3000/'
     createStore(baseUrl)
     createVenue(baseUrl)
-    createKeyword(baseUrl)
+    #createKeyword(baseUrl)
     #createStory(baseUrl)
     #createMenuTable(baseUrl)
     #createMenu(baseUrl)
-    createEvent(baseUrl)
-    createBooth(baseUrl)
+    #createEvent(baseUrl)
+    #createBooth(baseUrl)
     #rename()
     
     '''
